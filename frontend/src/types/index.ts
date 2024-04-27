@@ -7,13 +7,15 @@ export interface Note {
 
 export interface NotesListProps{
     notes: Note[];
+    onDelete: (deletedNoteId: number) => void;
 };
 
 export interface NotesCardProps{
     note: Note;
+    onDelete: (deletedNoteId: number) => void;
 };
 
 export interface CreateNoteModalProps {
     onClose: () => void;
     onCreate: (newNoteData: Note) => void;
-  }
+};
