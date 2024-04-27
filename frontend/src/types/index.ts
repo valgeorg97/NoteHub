@@ -2,6 +2,7 @@ export interface Note {
     id: number;
     title: string;
     content: string;
+    created_at: string;
   };
 
 export interface NotesListProps{
@@ -9,5 +10,10 @@ export interface NotesListProps{
 };
 
 export interface NotesCardProps{
-    note: Note
-}
+    note: Note;
+};
+
+export interface CreateNoteModalProps {
+    onClose: () => void;
+    onCreate: (newNoteData: Note) => void;
+  }
