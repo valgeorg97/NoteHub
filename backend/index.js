@@ -40,8 +40,8 @@ app.post("/notes", async (req, res) => {
     const { title, content, userEmail } = req.body;
     try {
         const newNote = await db.query(`INSERT INTO notes(title, content, user_email)
-                        VALUES($1, $2, $3)`, [title, content, userEmail]);
-        res.status(201).json(newNote);
+                        VALUES($1, $2, $3) RETURNING *`, [title, content, userEmail]); 
+        res.status(201).json(newNote.rows[0]);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Internal Server Error" });
