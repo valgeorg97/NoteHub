@@ -1,9 +1,9 @@
-import React from 'react'
+import Home from "./pages/Home"
 
 const App = () => {
   return (
-    <div className='bg-green-300'>
-      App
+    <div className="flex justify-center items-center h-screen bg-gray-900">
+      <Home/>
     </div>
   )
 }
