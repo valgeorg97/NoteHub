@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { CgCloseO } from "react-icons/cg";
 import { CreateNoteModalProps } from "../types";
 
@@ -16,8 +15,7 @@ const CreateNoteModal = ({ onClose, onCreate }: CreateNoteModalProps) => {
                 content,
                 userEmail: "test@test.com"
             };
-            const res = await axios.post('http://localhost:5000/notes', newNote);
-            onCreate(res.data);
+            onCreate(newNote);
             onClose();
         } catch (err) {
             console.error(err);
