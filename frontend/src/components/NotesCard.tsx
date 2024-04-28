@@ -1,7 +1,7 @@
 import { NotesCardProps } from "../types";
 import { RiCloseFill } from "react-icons/ri";
 
-const NotesCard = ({ note, onDelete, onNoteClick }: NotesCardProps) => {
+const NotesCard = ({ note, onDelete, onNoteClick, selectedColor }: NotesCardProps) => {
 
     const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.stopPropagation(); 
@@ -11,11 +11,10 @@ const NotesCard = ({ note, onDelete, onNoteClick }: NotesCardProps) => {
     const handleClick = () => {
         onNoteClick(note);
     };
+    console.log(selectedColor)
 
     return (
-        <div className="relative block w-full h-full p-4 bg-orange-500 rounded-lg 
-            shadow-xl hover:scale-105 hover:cursor-pointer 
-            dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" onClick={handleClick}>
+        <div className={`relative block w-full h-full p-4 rounded-lg shadow-xl hover:scale-105 hover:cursor-pointer bg-${selectedColor} dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`} onClick={handleClick}>
             <div onClick={(e) => handleDelete(e)} 
             className="absolute top-2 right-2 text-gray-800 cursor-pointer hover:text-gray-500">
                 <RiCloseFill size={28} />
