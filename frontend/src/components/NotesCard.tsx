@@ -14,7 +14,8 @@ const NotesCard = ({ note, onDelete, onNoteClick, selectedColor }: NotesCardProp
     console.log(selectedColor)
 
     return (
-        <div className={`relative block w-full h-full p-4 rounded-lg shadow-xl hover:scale-105 hover:cursor-pointer bg-${selectedColor} dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`} onClick={handleClick}>
+        <div className={`relative block w-full h-full p-4 rounded-lg shadow-xl hover:scale-105 
+        hover:cursor-pointer bg-${selectedColor} dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700`} onClick={handleClick}>
             <div onClick={(e) => handleDelete(e)} 
             className="absolute top-2 right-2 text-gray-800 cursor-pointer hover:text-gray-500">
                 <RiCloseFill size={28} />

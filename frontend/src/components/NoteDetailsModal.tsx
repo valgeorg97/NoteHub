@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { CgCloseO } from "react-icons/cg";
 import { NoteDetailsModalProps } from "../types";
+import { useCookies } from "react-cookie";
 
 const NoteDetailsModal = ({ onClose, note, onUpdate }: NoteDetailsModalProps) => {
     const [title, setTitle] = useState(note.title);
     const [content, setContent] = useState(note.content);
+    const [cookies] = useCookies();
+    const userEmail = cookies.Email;
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -13,7 +16,7 @@ const NoteDetailsModal = ({ onClose, note, onUpdate }: NoteDetailsModalProps) =>
                 id: note.id,
                 title,
                 content,
-                userEmail: "test@test.com",
+                userEmail: userEmail,
                 created_at: note.created_at
             };
             onUpdate(note, updatedNote)
