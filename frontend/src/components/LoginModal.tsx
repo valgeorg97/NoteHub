@@ -5,7 +5,7 @@ import { LoginModalProps } from "../types";
 import { useCookies } from "react-cookie";
 
 
-const LoginModal = ({ onClose, signUpModalOpen }:LoginModalProps) => {
+const LoginModal = ({ onClose, signUpModalOpen }: LoginModalProps) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -15,14 +15,12 @@ const LoginModal = ({ onClose, signUpModalOpen }:LoginModalProps) => {
         e.preventDefault();
         try {
             const response = await axios.post("http://localhost:5000/login", { email, password });
-            if (response.status === 201) {
-                setCookie('Email', response.data.email);
-                setCookie('AuthToken', response.data.token);
-                alert('Success');
-                onClose();
-            } else {
-                setError("Incorrect email or password");
-            }
+
+            setCookie('Email', response.data.email);
+            setCookie('AuthToken', response.data.token);
+            alert('Success');
+            onClose();
+
         } catch (err) {
             console.error(err);
             setError("An error occurred. Please try again later.");
@@ -67,10 +65,13 @@ const LoginModal = ({ onClose, signUpModalOpen }:LoginModalProps) => {
                         </div>
                         {error && <p className="text-red-500 mb-4">{error}</p>}
                         <div className="flex justify-center">
-                            <button type="button" onClick={onClose} className="mr-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Cancel</button>
-                            <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">Login</button>
+                            <button type="button" onClick={onClose} className="mr-4 px-4 py-2 bg-gray-200 
+                            text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Cancel</button>
+                            <button type="submit" className="px-4 py-2 bg-blue-600 
+                            text-white rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">Login</button>
                         </div>
-                        <p className="text-white mt-4 text-center">Not registered? <button type="button" className="text-blue-500" onClick={handleCreateAccount}>Create an account</button></p>
+                        <p className="text-white mt-4 text-center">Not registered? <button type="button" 
+                        className="text-blue-500" onClick={handleCreateAccount}>Create an account</button></p>
                     </form>
                 </div>
             </div>

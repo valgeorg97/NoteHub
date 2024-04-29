@@ -4,27 +4,33 @@ import { CgCloseO } from "react-icons/cg";
 import { useCookies } from "react-cookie";
 import { SignUpModalProps } from "../types";
 
-
 const SignUpModal = ({ onClose }: SignUpModalProps) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [cookies, setCookie] = useCookies();
 
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
+
+        if (email.length > 40) {
+            setError("Email must not exceed 40 characters.");
+            return;
+        }
+
         try {
             const response = await axios.post("http://localhost:5000/signup", { email, password });
             setCookie('Email', response.data.email);
             setCookie('AuthToken', response.data.token)
-            if (response.status === 201) {
-                alert('Success')
-                onClose();
-                window.location.reload();
-            } else {
-                setError("Error occurred while signing up");
-            }
+            alert('Success')
+            onClose();
+            window.location.reload();
+
         } catch (err) {
             console.error(err);
             setError("An error occurred. Please try again later.");

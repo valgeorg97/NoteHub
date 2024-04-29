@@ -11,31 +11,12 @@ app.use(express.json());
 
 app.get("/notes", async (req, res) => {
     try {
-        // Extract the JWT token from the authorization header
         const token = req.headers.authorization.split(' ')[1];
-        // Decode the token to get the payload which includes the user's email
         const decoded = jwt.verify(token, 'secret');
         const userEmail = decoded.email;
-        // Use the user's email to fetch notes
         const notes = await db.query('SELECT * FROM notes WHERE user_email = $1', [userEmail]);
         res.status(200).json(notes.rows);
     } catch (err) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
-
-// get a single note
-app.get("/notes/:id", async (req, res) => {
-    const { id } = req.params;
-    const userEmail = 'test@test.com';
-    try {
-        const note = await db.query('SELECT * FROM notes WHERE id = $1 AND user_email = $2', [id, userEmail]);
-        if (note.rows.length === 0) {
-            return res.status(404).json({ error: "Note not found" });
-        }
-        res.status(201).json(note.rows[0]);
-    } catch (err) {
-        console.error(err.message);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -89,7 +70,6 @@ app.post("/signup", async (req, res) => {
     try {
         await db.query(`INSERT INTO users(email, hashed_password) VALUES($1, $2)`, [email, hashedPassword]);
         const token = jwt.sign({email}, 'secret', { expiresIn: '1hr'});
-        console.log(token);
         res.status(201).json({ email, token }); 
     } catch (err) {
         console.error(err.message);
