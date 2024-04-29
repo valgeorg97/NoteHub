@@ -5,6 +5,7 @@ import { Note, NewNote } from "../types";
 import { IoCreateOutline } from "react-icons/io5";
 import { BiWinkSmile } from "react-icons/bi";
 import { useCookies } from "react-cookie";
+import {BASE_URL} from "../constants/constants"
 
 const Home = () => {
   const [notes, setNotes] = useState([] as Note[]);
@@ -18,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5000/notes', {
+      .get(`${BASE_URL}/notes`, {
           headers: {
               Authorization: `Bearer ${authToken}`
           }
@@ -35,7 +36,7 @@ const Home = () => {
 
   const handleCreateNote = async (newNoteData: NewNote) => {
     try {
-      const res = await axios.post('http://localhost:5000/notes', newNoteData);
+      const res = await axios.post(`${BASE_URL}/notes`, newNoteData);
       setNotes(prevNotes => [...prevNotes, res.data]);
       setOpenCreateModal(false);
     } catch (err) {
@@ -45,7 +46,7 @@ const Home = () => {
 
   const handleUpdateNote = async (note: Note, updatedNoteData: Note) => {
     try {
-      await axios.put(`http://localhost:5000/notes/${note.id}`, updatedNoteData);
+      await axios.put(`${BASE_URL}/notes/${note.id}`, updatedNoteData);
       setNotes(prevNotes =>
         prevNotes.map(prevNote =>
           prevNote.id === note.id ? { ...prevNote, ...updatedNoteData } : prevNote
@@ -59,7 +60,7 @@ const Home = () => {
 
   const handleDeleteNote = async (deletedNoteId: number) => {
     try {
-      await axios.delete(`http://localhost:5000/notes/${deletedNoteId}`);
+      await axios.delete(`${BASE_URL}/notes/${deletedNoteId}`);
       setNotes(prevNotes => prevNotes.filter(note => note.id !== deletedNoteId));
     } catch (error) {
       console.error(error);
@@ -94,7 +95,7 @@ const Home = () => {
               <Spinner />
             ) : (
               <>
-                {notes.length === 0 ? (
+                {!loading && notes.length === 0 ? (
                   <div className="flex items-center justify-center text-white py-8">
                     <p className="text-2xl mr-2">Hey, you can add your first note!</p>
                     <BiWinkSmile className="text-yellow-500" size={32} />

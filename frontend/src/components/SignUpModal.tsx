@@ -3,12 +3,14 @@ import axios from "axios";
 import { CgCloseO } from "react-icons/cg";
 import { useCookies } from "react-cookie";
 import { SignUpModalProps } from "../types";
+import {BASE_URL} from "../constants/constants"
 
 const SignUpModal = ({ onClose }: SignUpModalProps) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [cookies, setCookie] = useCookies();
+    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -24,7 +26,7 @@ const SignUpModal = ({ onClose }: SignUpModalProps) => {
         }
 
         try {
-            const response = await axios.post("http://localhost:5000/signup", { email, password });
+            const response = await axios.post(`${BASE_URL}/signup`, { email, password });
             setCookie('Email', response.data.email);
             setCookie('AuthToken', response.data.token)
             alert('Success')

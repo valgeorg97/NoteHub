@@ -9,7 +9,7 @@ const NotesCard = ({ note, onDelete, onNoteClick }: NotesCardProps) => {
     const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.stopPropagation(); 
         onDelete(note.id);
-        enqueueSnackbar('Note deleted successfully!', { variant: 'success' }); 
+        enqueueSnackbar('Note deleted successfully!', { variant: 'success', anchorOrigin: { vertical: "top", horizontal: "center" } }); 
     };
 
     const handleClick = () => {

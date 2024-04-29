@@ -3,6 +3,7 @@ import axios from "axios";
 import { CgCloseO } from "react-icons/cg";
 import { LoginModalProps } from "../types";
 import { useCookies } from "react-cookie";
+import { BASE_URL } from "../constants/constants";
 
 
 const LoginModal = ({ onClose, signUpModalOpen }: LoginModalProps) => {
@@ -14,7 +15,7 @@ const LoginModal = ({ onClose, signUpModalOpen }: LoginModalProps) => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5000/login", { email, password });
+            const response = await axios.post(`${BASE_URL}/login`, { email, password });
 
             setCookie('Email', response.data.email);
             setCookie('AuthToken', response.data.token);
