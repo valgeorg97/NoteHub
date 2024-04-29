@@ -42,11 +42,11 @@ CREATE TABLE users (
 2.  Install dependencies using `npm install`.
 3.  Set up environment variables by creating a .env file with the following content:
 
--USER=your_postgres_username
--PASSWORD=your_postgres_password
--NAME=notehub
--HOST=localhost
--DBPORT=5432 (default PG port)
+- USER=your_postgres_username
+- PASSWORD=your_postgres_password
+- NAME=notehub
+- HOST=localhost
+- DBPORT=5432 (default PG port)
 
 3.  Start the server using `npm run dev`.
 4.  The server will be running on port `5000`.
