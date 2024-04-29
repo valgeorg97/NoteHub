@@ -13,14 +13,12 @@ export interface NotesListProps{
     notes: Note[];
     onDelete: (deletedNoteId: number) => void;
     onNoteClick: (note: Note) => void;
-    selectedColor: string;
 };
 
 export interface NotesCardProps{
     note: Note;
     onDelete: (deletedNoteId: number) => void;
     onNoteClick: (note: Note) => void;
-    selectedColor: string;
 };
 
 export interface CreateNoteModalProps {

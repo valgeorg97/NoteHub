@@ -11,10 +11,9 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null as Note | null);
-  const [selectedColor, setSelectedColor] = useState("orange-500");
   const [cookies] = useCookies();
   const userEmail = cookies.Email;
-  const authToken = cookies.AuthToken
+  const authToken = cookies.AuthToken;
 
   useEffect(() => {
     setLoading(true);
@@ -84,15 +83,6 @@ const Home = () => {
             <div className="flex items-center justify-between py-4">
               <h1 className="text-2xl text-white">My notes</h1>
               <div className="flex items-center">
-                <select
-                  value={selectedColor}
-                  onChange={(e) => setSelectedColor(e.target.value)}
-                  className="bg-white text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded-md p-1 mr-4"
-                >
-                  <option value="orange-500">Orange</option>
-                  <option value="blue-500">Blue</option>
-                  <option value="green-500">Green</option>
-                </select>
                 <IoCreateOutline
                   onClick={() => setOpenCreateModal(true)}
                   className="text-white hover:text-gray-300 cursor-pointer"
@@ -114,7 +104,6 @@ const Home = () => {
                     notes={notes}
                     onDelete={handleDeleteNote}
                     onNoteClick={handleNoteClick}
-                    selectedColor={selectedColor}
                   />
                 )}
               </>
