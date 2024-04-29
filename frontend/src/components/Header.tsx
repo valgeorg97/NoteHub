@@ -27,7 +27,7 @@ const Header = ({ userEmail }: HeaderProps) => {
 
   return (
     <div className="h-16 flex items-center justify-between px-0 py-10 border-b-2 border-gray-600">
-      <div className="flex items-start justify-start">
+      <div className="flex items-start justify-start hidden md:block">
         <img src={logo} alt="Logo" className="h-10" />
       </div>
       

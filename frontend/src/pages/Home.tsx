@@ -86,7 +86,7 @@ const Home = () => {
                 <IoCreateOutline
                   onClick={() => setOpenCreateModal(true)}
                   className="text-white hover:text-gray-300 cursor-pointer"
-                  size={36}
+                  size={44}
                 />
               </div>
             </div>
