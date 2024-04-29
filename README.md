@@ -2,6 +2,7 @@
 ==================
 
 NoteHub is a PERN (PostgreSQL, Express.js, React.js, Node.js) stack application that allows users to manage their notes. Users can sign up, log in, and perform CRUD (Create, Read, Update, Delete) operations on their notes. The application is fully responsive, ensuring a seamless user experience across different devices.
+
 ![image](https://github.com/valgeorg97/NoteHub/assets/156944279/62581afb-eadf-4341-bb5a-7d18f783b695)
 
 Technologies Used
