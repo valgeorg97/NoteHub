@@ -3,7 +3,7 @@ import { PORT } from "./config.js";
 import cors from "cors";
 import db from "./db.js";
 import bcrypt from "bcrypt";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 const app = express();
 app.use(cors());
