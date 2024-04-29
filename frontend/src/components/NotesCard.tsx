@@ -1,11 +1,15 @@
 import React from 'react';
 import { NotesCardProps } from "../types";
 import { RiCloseFill } from "react-icons/ri";
+import { useSnackbar } from 'notistack';
 
 const NotesCard = ({ note, onDelete, onNoteClick }: NotesCardProps) => {
+    const { enqueueSnackbar } = useSnackbar(); 
+
     const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.stopPropagation(); 
         onDelete(note.id);
+        enqueueSnackbar('Note deleted successfully!', { variant: 'success' }); 
     };
 
     const handleClick = () => {

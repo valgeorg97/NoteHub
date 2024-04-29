@@ -2,12 +2,14 @@ import { useState } from "react";
 import { CgCloseO } from "react-icons/cg";
 import { NoteDetailsModalProps } from "../types";
 import { useCookies } from "react-cookie";
+import { useSnackbar } from "notistack"; 
 
 const NoteDetailsModal = ({ onClose, note, onUpdate }: NoteDetailsModalProps) => {
     const [title, setTitle] = useState(note.title);
     const [content, setContent] = useState(note.content);
     const [cookies] = useCookies();
     const userEmail = cookies.Email;
+    const { enqueueSnackbar } = useSnackbar(); 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -21,6 +23,12 @@ const NoteDetailsModal = ({ onClose, note, onUpdate }: NoteDetailsModalProps) =>
             };
             onUpdate(note, updatedNote)
             onClose();
+            enqueueSnackbar("Note updated successfully!", { variant: "success" ,
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "center",
+            },
+          });
         } catch (err) {
             console.error(err);
         }
