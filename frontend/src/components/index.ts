@@ -3,6 +3,9 @@ import NotesList from "./NotesList";
 import NotesCard from "./NotesCard";
 import CreateNoteModal from "./CreateNoteModal";
 import NoteDetailsModal from "./NoteDetailsModal";
+import Header from "./Header";
+import LoginModal from "./LoginModal";
+import SignUpModal from "./SignUpModal";
 
 
 export {
@@ -10,5 +13,8 @@ export {
     NotesList,
     NotesCard,
     CreateNoteModal,
-    NoteDetailsModal
+    NoteDetailsModal,
+    Header,
+    LoginModal,
+    SignUpModal
 }

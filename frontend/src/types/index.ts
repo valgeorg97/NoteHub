@@ -32,4 +32,17 @@ export interface NoteDetailsModalProps {
     onClose: () => void;
     note: Note;
     onUpdate: (note: Note, updatedData: Note) => void;   
+};
+
+export interface LoginModalProps {
+    onClose: () => void;
+    signUpModalOpen: () => void;
+};
+
+export interface SignUpModalProps {
+    onClose: () => void;
+};
+
+export interface HeaderProps {
+    userEmail: string;
 }

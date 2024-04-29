@@ -2,18 +2,23 @@ import express from "express";
 import { PORT } from "./config.js";
 import cors from "cors";
 import db from "./db.js";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-//get all notes
 app.get("/notes", async (req, res) => {
-    const userEmail = 'test@test.com';
     try {
+        // Extract the JWT token from the authorization header
+        const token = req.headers.authorization.split(' ')[1];
+        // Decode the token to get the payload which includes the user's email
+        const decoded = jwt.verify(token, 'secret');
+        const userEmail = decoded.email;
+        // Use the user's email to fetch notes
         const notes = await db.query('SELECT * FROM notes WHERE user_email = $1', [userEmail]);
-        res.status(201).json(notes.rows);
+        res.status(200).json(notes.rows);
     } catch (err) {
         res.status(500).json({ error: "Internal Server Error" });
     }
@@ -83,7 +88,9 @@ app.post("/signup", async (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
     try {
         await db.query(`INSERT INTO users(email, hashed_password) VALUES($1, $2)`, [email, hashedPassword]);
-        res.status(201).json({ email }); 
+        const token = jwt.sign({email}, 'secret', { expiresIn: '1hr'});
+        console.log(token);
+        res.status(201).json({ email, token }); 
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ error: "Internal Server Error" });
@@ -99,8 +106,9 @@ app.post("/login", async (req, res) => {
             return res.status(404).json({ error: "User not found" });
         }
         const match = await bcrypt.compare(password, user.rows[0].hashed_password);
+        const token = jwt.sign({email}, 'secret', { expiresIn: '1hr'});
         if (match) {
-            res.status(201).json({ message: "Login successful", email: user.rows[0].email });
+            res.status(201).json({ message: "Login successful", email: user.rows[0].email, token });
         } else {
             res.status(401).json({ error: "Incorrect password" });
         }
