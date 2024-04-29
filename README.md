@@ -14,27 +14,6 @@ Technologies Used
 *   **Node.js**: JavaScript runtime used for running the backend server.
 *   **Tailwind CSS**: Utility-first CSS framework used for styling.
 
-Before running the application, make sure you have PostgreSQL installed on your machine.
------------------------
-
-**Database Setup**
-Install PostgreSQL and set up a new database named notehub.
-Run the following SQL commands to create the necessary tables:
-
-CREATE TABLE notes (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    content TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE users (
-    email VARCHAR(255) PRIMARY KEY,
-    hashed_password VARCHAR(255)
-);
-
-
 Running the Application
 -----------------------
 
