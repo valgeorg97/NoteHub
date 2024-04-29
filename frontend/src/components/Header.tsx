@@ -39,8 +39,8 @@ const Header = ({ userEmail }: HeaderProps) => {
           focus:outline-none hover:bg-red-600 focus:ring-4 font-medium rounded-full text-sm px-5 py-2 me-2 mb-2 dark:bg-gray-800 
           dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Sign Out</button>
         ) : (
-          <button type="button" onClick={handleLoginClick} className="text-white bg-blue-500 
-          focus:outline-none hover:bg-blue-600 focus:ring-4 font-medium rounded-full text-sm px-5 py-2 me-2 mb-2 dark:bg-gray-800 
+          <button type="button" onClick={handleLoginClick} className="text-white bg-gradient-to-r from-cyan-600 to-blue-600
+          focus:outline-none hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-600 font-medium rounded-full text-sm px-5 py-2 me-2 mb-2 dark:bg-gray-800 
           dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Login</button>
         )}
       </div>
