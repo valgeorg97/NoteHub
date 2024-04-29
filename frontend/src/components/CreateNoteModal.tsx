@@ -39,7 +39,7 @@ const CreateNoteModal = ({ onClose, onCreate }: CreateNoteModalProps) => {
                         <label htmlFor="title" className="block text-sm font-medium text-white">Title</label>
                         <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)}
                             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full 
-            shadow-sm sm:text-md border-gray-300 rounded-md p-2" />
+            shadow-sm sm:text-md border-gray-300 rounded-md p-2" maxLength={25} required/>
                     </div>
                     <div className="mb-4">
                         <label htmlFor="content" className="block text-sm font-medium text-white">Content</label>
